@@ -1,0 +1,25 @@
+# Java build output
+/target/
+/out/
+/sources.txt
+/build/
+*.class
+*.log
+hs_err_pid*
+replay_pid*
+
+# IDE metadata
+.idea/
+*.iml
+.vscode/
+.classpath
+.project
+.settings/
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local test artifacts
+*.tmp
