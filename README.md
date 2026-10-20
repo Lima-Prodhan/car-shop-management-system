@@ -4,7 +4,7 @@ A Java Swing desktop application developed as an academic team project for objec
 
 > **Project scope:** this is an educational prototype, not production dealership software. It does not provide real authentication, persistent storage, a payment process, or production-grade financial estimates.
 
-## Features
+## Project Features
 
 ### Admin dashboard
 - Add commuter and sports vehicles with type-specific attributes.
@@ -40,47 +40,24 @@ A Java Swing desktop application developed as an academic team project for objec
 - Maven
 - JUnit Jupiter (JUnit 5)
 
-## Run the application
-
-### Option A: Maven (recommended)
-
-Install a JDK 17+ and Maven, then run from the repository root:
-
-```bash
-mvn clean package
-java -cp target/classes carshop.Main
-```
-
-The project does not need an external database or environment variables. Maven must be able to download the JUnit and plugin dependencies on the first build.
-
-### Option B: Direct Java compilation
-
-With a JDK 17+ installed, run the helper script:
-
-- **Windows:** double-click `run.bat` or run `run.bat` from Command Prompt.
-- **macOS / Linux:** run `./run.sh` from a terminal.
-
-The scripts compile the application source. They do not run the automated test suite.
-
-## Run the tests
-
-From the repository root:
-
-```bash
-mvn test
-```
-
-To perform the full Maven verification lifecycle:
-
-```bash
-mvn verify
-```
-
-A GitHub Actions workflow runs `mvn verify` on pushes and pull requests.
-
 ## Test coverage
 
+The project uses JUnit Jupiter (JUnit 5). The tests focus on the domain layer: inventory operations, customer purchase history, and vehicle calculations. The Swing UI is not covered by automated UI tests.
 The JUnit 5 suite includes ordinary unit tests and one parameterized test with four case variants. It exercises inventory totals/search/removal, customer purchase history and VIP thresholds, invalid core model data, financial/performance estimates, and boundary/negative inputs. The customer-purchase workflow is tested at the domain-model level; GUI interaction itself is not covered by automated UI tests.
+
+## Test design
+
+| Area | Representative checks | Testing idea |
+|---|---|---|
+| Inventory | Total/average value, cheapest/most expensive car, removal, empty inventory | Functional and boundary-value tests |
+| Inventory search | Case-insensitive make search, trimming whitespace, null/blank search | Parameterized, negative, and boundary tests |
+| Inventory encapsulation | Reject null cars and prevent direct mutation through the inventory view | Negative and state-protection tests |
+| Customer | Total spent, VIP status, most expensive purchase, make history, purchases by year | Unit tests and threshold testing |
+| Customer encapsulation | Reject null purchases and prevent direct mutation through the purchase-history view | Negative and state-protection tests |
+| Shared vehicle logic | Depreciation, antique threshold, insurance estimate, make comparison | Boundary-value and invalid-input tests |
+| Commuter vehicles | Fuel-cost estimate, fuel efficiency, seating, luggage capacity, family-friendly threshold | Calculation, boundary, and invalid-input tests |
+| Sports vehicles | Hypercar/track-ready classifications, quarter-mile heuristic, maintenance estimate, drag-race comparison | Conditional, calculation, and negative tests |
+
 
 ## Project structure
 
@@ -113,8 +90,5 @@ src/
 - The quarter-mile value uses a deliberately simplified formula for demonstrating conditional/model logic; it is **not** a physics-based performance prediction.
 - Inventory and purchase totals use `long` aggregation, but each vehicle's stored price is an `int` in this version.
 
-## Academic context and attribution
 
-This is a **team academic project** associated with East West University's CSE110 Object-Oriented Programming coursework and CSE430 Software Testing and Quality Assurance coursework. The source keeps the original project concepts while improving packaging, validation, and maintainability for portfolio review. It should not be represented as a solo-authored project.
-
-A software license has not been added. Because this originated as a team project, confirm the team's permission and intended license before adding an open-source license or reusing the code outside the project.
+This is a **team academic project** associated with East West University's CSE110 Object-Oriented Programming coursework and CSE430 Software Testing and Quality Assurance coursework. 
