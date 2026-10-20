@@ -1,6 +1,6 @@
 # Car Shop Management System
 
-A Java Swing desktop application developed as an academic team project for object-oriented programming and expanded for **CSE430: Software Testing and Quality Assurance**. It demonstrates object-oriented modelling, a small in-memory inventory workflow, GUI interactions, and automated unit tests with JUnit 5.
+A Java Swing desktop application developed as an academic team project for **object-oriented programming** and expanded for **Software Testing and Quality Assurance**. It demonstrates object-oriented modelling, a small in-memory inventory workflow, GUI interactions and automated unit tests with JUnit 5.
 
 > **Project scope:** this is an educational prototype, not production dealership software. It does not provide real authentication, persistent storage, a payment process, or production-grade financial estimates.
 
@@ -27,11 +27,11 @@ A Java Swing desktop application developed as an academic team project for objec
 
 **Customer view**
 
-![Customer view showing the sample vehicle inventory and vehicle actions](docs/screenshots/customer-view.png)
+![Customer view showing the sample vehicle inventory and vehicle actions](screenshots/customer-view.png)
 
 **Admin dashboard**
 
-![Admin dashboard showing sample inventory statistics and an empty customer log](docs/screenshots/admin-dashboard.png)
+![Admin dashboard showing sample inventory statistics and an empty customer log](screenshots/admin-dashboard.png)
 
 ## Technology stack
 
@@ -42,8 +42,7 @@ A Java Swing desktop application developed as an academic team project for objec
 
 ## Test coverage
 
-The project uses JUnit Jupiter (JUnit 5). The tests focus on the domain layer: inventory operations, customer purchase history, and vehicle calculations. The Swing UI is not covered by automated UI tests.
-The JUnit 5 suite includes ordinary unit tests and one parameterized test with four case variants. It exercises inventory totals/search/removal, customer purchase history and VIP thresholds, invalid core model data, financial/performance estimates, and boundary/negative inputs. The customer-purchase workflow is tested at the domain-model level; GUI interaction itself is not covered by automated UI tests.
+The project uses JUnit Jupiter (JUnit 5). The JUnit 5 suite includes ordinary unit tests and one parameterized test with four case variants. It exercises inventory totals/search/removal, customer purchase history and VIP thresholds, invalid core model data, financial/performance estimates, and boundary/negative inputs. The customer-purchase workflow is tested at the domain-model level; GUI interaction itself is not covered by automated UI tests.
 
 ## Test design
 
@@ -58,36 +57,13 @@ The JUnit 5 suite includes ordinary unit tests and one parameterized test with f
 | Commuter vehicles | Fuel-cost estimate, fuel efficiency, seating, luggage capacity, family-friendly threshold | Calculation, boundary, and invalid-input tests |
 | Sports vehicles | Hypercar/track-ready classifications, quarter-mile heuristic, maintenance estimate, drag-race comparison | Conditional, calculation, and negative tests |
 
-
-## Project structure
-
-```text
-src/
-├── main/java/carshop/
-│   ├── Main.java                 # Swing application entry point and GUI
-│   ├── inventory/CarShop.java   # In-memory vehicle inventory operations
-│   ├── users/User.java          # User information contract
-│   ├── users/Customer.java      # Customer profile and purchase history
-│   └── vehicles/
-│       ├── Car.java             # Shared vehicle properties and estimates
-│       ├── Commuter.java        # Commuter vehicle logic
-│       └── Sports.java          # Sports vehicle logic
-└── test/java/carshop/
-    ├── inventory/CarShopTest.java
-    ├── users/CustomerTest.java
-    └── vehicles/
-        ├── CarTest.java
-        ├── CommuterTest.java
-        └── SportsTest.java
-```
-
-## Important implementation notes and limitations
+## Important implementation notes and Limitations
 
 - All inventory and customer data is held in memory and is lost when the application closes.
 - The “admin” screen is a demo view switch, not a secured administrator login. Do not enter real customer information.
 - The sample purchase flow does not process payment, enforce a wallet balance, or persist a transaction.
 - The insurance, depreciation, fuel-cost, quarter-mile, VIP, and maintenance rules are simplified academic examples. They are not financial, insurance, or automotive-performance advice.
-- The quarter-mile value uses a deliberately simplified formula for demonstrating conditional/model logic; it is **not** a physics-based performance prediction.
+- The quarter-mile value uses a deliberately simplified formula for demonstrating conditional/model logic; it is not a physics-based performance prediction.
 - Inventory and purchase totals use `long` aggregation, but each vehicle's stored price is an `int` in this version.
 
 
